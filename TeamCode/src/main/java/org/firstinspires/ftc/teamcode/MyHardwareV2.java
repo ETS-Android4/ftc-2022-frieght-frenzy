@@ -51,6 +51,7 @@ public class MyHardwareV2 {
     public DcMotor IntakeMotor = null;
     public DcMotor PulleyMotor = null;
     public DcMotor DuckMotor = null;
+    public DcMotor ArmMotor = null;
     public ElapsedTime runtime = new ElapsedTime();
 
     public BNO055IMU imu;
@@ -80,6 +81,7 @@ public class MyHardwareV2 {
         IntakeMotor = hardwareMap.get(DcMotor.class, "IntakeMotor");
         PulleyMotor = hardwareMap.get(DcMotor.class, "PulleyMotor");
         DuckMotor = hardwareMap.get(DcMotor.class, "DuckMotor");
+        ArmMotor = hardwareMap.get(DcMotor.class, "cubo");
 
         //Connect Servo
         BucketServo = hardwareMap.get(Servo.class, "BucketServo");
@@ -92,6 +94,7 @@ public class MyHardwareV2 {
         IntakeMotor.setDirection(DcMotor.Direction.FORWARD);
         PulleyMotor.setDirection(DcMotor.Direction.FORWARD);
         DuckMotor.setDirection(DcMotor.Direction.FORWARD);
+        ArmMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //Set Motor Mode
         RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -101,6 +104,7 @@ public class MyHardwareV2 {
         IntakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         PulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         DuckMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        ArmMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         //Set ZERO POWER BEHAVIOR
         RFMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -110,6 +114,7 @@ public class MyHardwareV2 {
         IntakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         PulleyMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         DuckMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        ArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -130,6 +135,7 @@ public class MyHardwareV2 {
         IntakeMotor.setPower(0);
         PulleyMotor.setPower(0);
         DuckMotor.setPower(0);
+        ArmMotor.setPower(0);
 
         //Reset the servo position
         BucketServo.setPosition(1);

@@ -23,7 +23,7 @@ public class HubWarehouseRedV2 extends LinearOpMode {
 
         waitForStart();
 
-        strafeLeft(0.5, 1500);
+        strafeLeft(0.5, 1800);
         stopDriving(300);
 
         movePulley(0.8, 1000);

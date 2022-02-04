@@ -28,12 +28,12 @@ public class EverythingRedV2 extends LinearOpMode {
         driveForward(0.5, 500);
         driveForward(0.05, 500);
         turnCarousel(-0.6, 4000);
-
-        strafeRight(0.5, 1500);
-
+        strafeRight(0.5, 1600);
         stopDriving(500);
-        driveForward(-0.5, 650);
+
+        driveForward(-0.5, 800);
         stopDriving(10);
+
         movePulley(0.8, 1100);
         movePulley(0, 500);
         moveBucket(0.6, 2000);
@@ -42,7 +42,7 @@ public class EverythingRedV2 extends LinearOpMode {
         movePulley(0, 10);
         driveForward(0.5, 900);
         stopDriving(500);
-        strafeLeft(0.5, 400);
+        strafeLeft(0.5, 300);
 
         stopDriving();
     }

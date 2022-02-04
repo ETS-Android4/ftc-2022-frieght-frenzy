@@ -33,7 +33,9 @@ public class EverythingBlueV2 extends LinearOpMode {
         stopDriving(500);
         weirdMovement(0.5, 0.5, -0.5, -0.5, 550);//Left turn
         stopDriving(500);
-        driveForward(-0.5, 750);
+
+        driveForward(-0.5, 700);
+
         stopDriving(10);
         movePulley(0.8, 1000);
         movePulley(0, 500);

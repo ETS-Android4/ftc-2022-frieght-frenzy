@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="JoystickDrive", group="Linear Opmode")
 //@Disabled
@@ -15,6 +18,7 @@ public class JoystickDrive extends OpMode {
     double IntakePower = 0;
     double PulleyPower = 0;
     double DuckPower = 0;
+    double ArmPower = 0;
 
     @Override
     public void init() {
@@ -28,6 +32,7 @@ public class JoystickDrive extends OpMode {
         pulley(0.8, 0.4);
         bucket();
         turnCarousel(0.85);
+        moveArm(0.2);
     }
 
     public void tankDrive(double drivePow){
@@ -113,7 +118,7 @@ public class JoystickDrive extends OpMode {
     }
 
     public void turnCarousel(double turningPower){
-        if(gamepad1.right_bumper){
+        if(gamepad1.left_trigger > 0.8){
             DuckPower = turningPower;
         } else if (gamepad1.left_bumper){
             DuckPower = -turningPower;
@@ -122,5 +127,32 @@ public class JoystickDrive extends OpMode {
         }
 
         robot.DuckMotor.setPower(DuckPower);
+    }
+
+//    public void moveArm(double turningPower){
+//        if(gamepad1.right_trigger > 0.8){
+//            ArmPower = turningPower;
+//        } else if (gamepad1.right_bumper){
+//            ArmPower = -turningPower;
+//        } else {
+//            ArmPower = 0;
+//        }
+//
+//        robot.ArmMotor.setPower(ArmPower);
+//    }
+
+    public void moveArm(double turningPower){
+        int ticks = robot.ArmMotor.getCurrentPosition();
+
+        if(gamepad1.right_trigger > 0.8){
+            robot.ArmMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.ArmMotor.setPower(turningPower);
+        } else if(gamepad1.right_bumper){
+            robot.ArmMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.ArmMotor.setPower(-turningPower - 0.05);
+        } else {
+            robot.ArmMotor.setTargetPosition(ticks);
+            robot.ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
     }
 }
