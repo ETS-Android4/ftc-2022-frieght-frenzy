@@ -56,6 +56,8 @@ public class MyHardwareV2 {
 
     public BNO055IMU imu;
 
+    public Slider slider = null;
+
     //Create Servo
     public Servo BucketServo = null;
 
@@ -72,6 +74,7 @@ public class MyHardwareV2 {
 
     public void initialize(HardwareMap hwMap) {
         hardwareMap = hwMap;
+        slider = new Slider(hardwareMap);
 
         //Connect Motor
         RFMotor = hardwareMap.get(DcMotor.class, "RFMotor");
