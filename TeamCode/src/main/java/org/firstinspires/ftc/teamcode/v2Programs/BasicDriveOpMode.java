@@ -38,9 +38,9 @@ public class BasicDriveOpMode extends OpMode {
     @Override
     public void loop() {
         drive.driveFieldCentric(
-            driverOp.getLeftX()/2,
+            driverOp.getLeftX() * 2 / 3,
             driverOp.getLeftY()/2,
-            driverOp.getRightY()/2,
+            driverOp.getRightX()/2,
                 imu.getHeading()
         );
     }

@@ -20,13 +20,18 @@ public class JoystickDrive extends OpMode {
     double DuckPower = 0;
     double ArmPower = 0;
 
+    int ticks = 0;
+
     @Override
     public void init() {
         robot.initialize(hardwareMap);
+        robot.PulleyMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.PulleyMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     @Override
     public void loop() {
+        ticks = robot.PulleyMotor.getCurrentPosition();
         tankDrive(0.5);
         intake(0.6);
         pulley(0.8, 0.4);
@@ -98,6 +103,7 @@ public class JoystickDrive extends OpMode {
     }
 
     public void pulley(double powerGoingUp, double powerGoingDown){
+
         if(gamepad1.y){
             PulleyPower = powerGoingUp;
         } else if(gamepad1.a){
@@ -110,10 +116,14 @@ public class JoystickDrive extends OpMode {
     }
 
     public void bucket(){
+        telemetry.addData("ticks:",ticks);
         if(gamepad1.x){
             robot.BucketServo.setPosition(0.6);
-        } else{
+        } else if (ticks > 500){
+            robot.BucketServo.setPosition(0.86);
+        } else {
             robot.BucketServo.setPosition(1);
+
         }
     }
 
